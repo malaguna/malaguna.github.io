@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://malaguna.github.io/sitemap.xml 
