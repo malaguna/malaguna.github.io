@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: 
+Disallow:
 
-Sitemap: http://malaguna.github.io/sitemap.xml 
+Sitemap: http://malaguna.github.io/sitemap.xml
