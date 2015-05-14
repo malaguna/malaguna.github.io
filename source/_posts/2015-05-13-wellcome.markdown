@@ -1,0 +1,31 @@
+---
+layout: post
+title: "wellcome"
+date: 2015-05-13 08:44:41 +0200
+comments: true
+categories: wellcome 
+---
+
+Hi, this is my very first post in octopress ;) so it is a kind of hello world!
+
+I need to probe several things about markdown syntax:
+
+* lists
+* code
+* something else
+
+``` java Java sample code
+//This is some comment 
+public String someSqlMethod(Integer id) {
+	String query = "select column from table where id = :id";
+
+	Object result = session.createSQLQuery(query)
+		.addScalar("column")
+		.setInteger("id", id)
+		.uniqueResult();
+
+	return (result !=null)?(String) result:null;
+}
+```
+
+It looks like perfect!
