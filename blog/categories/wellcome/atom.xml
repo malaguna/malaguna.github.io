@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Wellcome | malaguna's boring blog]]></title>
+  <link href="http://malaguna.github.io/blog/categories/wellcome/atom.xml" rel="self"/>
+  <link href="http://malaguna.github.io/"/>
+  <updated>2015-05-14T21:04:37+02:00</updated>
+  <id>http://malaguna.github.io/</id>
+  <author>
+    <name><![CDATA[Miguel A. Laguna]]></name>
+    <email><![CDATA[malaguna@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World!]]></title>
+    <link href="http://malaguna.github.io/blog/2015/05/14/wellcome/"/>
+    <updated>2015-05-14T20:13:41+02:00</updated>
+    <id>http://malaguna.github.io/blog/2015/05/14/wellcome</id>
+    <content type="html"><![CDATA[<p>Hi, this is my very first post in octopress ;) so it is a kind of hello world!</p>
+
+<p>I need to probe several things about markdown syntax:</p>
+
+<ul>
+<li>lists</li>
+<li>code</li>
+<li>something else</li>
+</ul>
+
+
+<pre><code class="java Java sample code">//This is some comment 
+public String someSqlMethod(Integer id) {
+    String query = "select column from table where id = :id";
+
+    Object result = session.createSQLQuery(query)
+        .addScalar("column")
+        .setInteger("id", id)
+        .uniqueResult();
+
+    return (result !=null)?(String) result:null;
+}
+</code></pre>
+
+<p>It looks like perfect!</p>
+]]></content>
+  </entry>
+  
+</feed>

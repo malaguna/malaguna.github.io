@@ -4,7 +4,7 @@
   <title><![CDATA[malaguna's boring blog]]></title>
   <link href="http://malaguna.github.io/atom.xml" rel="self"/>
   <link href="http://malaguna.github.io/"/>
-  <updated>2015-05-12T14:54:18+02:00</updated>
+  <updated>2015-05-14T21:04:37+02:00</updated>
   <id>http://malaguna.github.io/</id>
   <author>
     <name><![CDATA[Miguel A. Laguna]]></name>
@@ -12,5 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World!]]></title>
+    <link href="http://malaguna.github.io/blog/2015/05/14/wellcome/"/>
+    <updated>2015-05-14T20:13:41+02:00</updated>
+    <id>http://malaguna.github.io/blog/2015/05/14/wellcome</id>
+    <content type="html"><![CDATA[<p>Hi, this is my very first post in octopress ;) so it is a kind of hello world!</p>
+
+<p>I need to probe several things about markdown syntax:</p>
+
+<ul>
+<li>lists</li>
+<li>code</li>
+<li>something else</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>Java sample code</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//This is some comment </span>
+</span><span class='line'><span class="kd">public</span> <span class="n">String</span> <span class="nf">someSqlMethod</span><span class="o">(</span><span class="n">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">String</span> <span class="n">query</span> <span class="o">=</span> <span class="s">&quot;select column from table where id = :id&quot;</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">Object</span> <span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">createSQLQuery</span><span class="o">(</span><span class="n">query</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">.</span><span class="na">addScalar</span><span class="o">(</span><span class="s">&quot;column&quot;</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">.</span><span class="na">setInteger</span><span class="o">(</span><span class="s">&quot;id&quot;</span><span class="o">,</span> <span class="n">id</span><span class="o">)</span>
+</span><span class='line'>      <span class="o">.</span><span class="na">uniqueResult</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="o">(</span><span class="n">result</span> <span class="o">!=</span><span class="kc">null</span><span class="o">)?(</span><span class="n">String</span><span class="o">)</span> <span class="nl">result:</span><span class="kc">null</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It looks like perfect!</p>
+]]></content>
+  </entry>
   
 </feed>
