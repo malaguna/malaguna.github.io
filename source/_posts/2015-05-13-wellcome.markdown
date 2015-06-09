@@ -8,6 +8,8 @@ categories: wellcome
 
 Hi, this is my very first post in octopress ;) so it is a kind of hello world!
 
+<!-- more -->
+
 I need to probe several things about markdown syntax:
 
 * lists
