@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://malaguna.github.io/blog/2015/05/14/wellcome/</loc>
-    <lastmod>2015-05-14T20:13:41+02:00</lastmod>
+    <loc>http://malaguna.github.io/blog/2015/06/09/liquifying-your-project/</loc>
+    <lastmod>2015-06-09T23:29:51+02:00</lastmod>
   </url>
   <url>
-    <loc>http://malaguna.github.io/</loc>
+    <loc>http://malaguna.github.io/blog/2015/05/14/wellcome/</loc>
+    <lastmod>2015-05-14T20:13:41+02:00</lastmod>
   </url>
   <url>
     <loc>http://malaguna.github.io/blog/archives/</loc>
   </url>
   <url>
+    <loc>http://malaguna.github.io/</loc>
+  </url>
+  <url>
     <loc>http://malaguna.github.io/blog/categories/wellcome/</loc>
+  </url>
+  <url>
+    <loc>http://malaguna.github.io/blog/categories/java/</loc>
+  </url>
+  <url>
+    <loc>http://malaguna.github.io/blog/categories/hibernate/</loc>
+  </url>
+  <url>
+    <loc>http://malaguna.github.io/blog/categories/liquibase/</loc>
+  </url>
+  <url>
+    <loc>http://malaguna.github.io/blog/categories/maven/</loc>
+  </url>
+  <url>
+    <loc>http://malaguna.github.io/blog/categories/spring/</loc>
   </url>
 </urlset>

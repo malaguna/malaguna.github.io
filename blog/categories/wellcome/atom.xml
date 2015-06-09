@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Wellcome | malaguna's boring blog]]></title>
   <link href="http://malaguna.github.io/blog/categories/wellcome/atom.xml" rel="self"/>
   <link href="http://malaguna.github.io/"/>
-  <updated>2015-05-14T21:13:17+02:00</updated>
+  <updated>2015-06-09T23:36:54+02:00</updated>
   <id>http://malaguna.github.io/</id>
   <author>
     <name><![CDATA[Miguel A. Laguna]]></name>
@@ -19,6 +19,9 @@
     <updated>2015-05-14T20:13:41+02:00</updated>
     <id>http://malaguna.github.io/blog/2015/05/14/wellcome</id>
     <content type="html"><![CDATA[<p>Hi, this is my very first post in octopress ;) so it is a kind of hello world!</p>
+
+<!-- more -->
+
 
 <p>I need to probe several things about markdown syntax:</p>
 

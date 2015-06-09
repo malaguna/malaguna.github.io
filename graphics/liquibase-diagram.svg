@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="297mm"
+   height="210mm"
+   id="svg3959"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="liquibase-diagram.svg"
+   inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+   inkscape:export-xdpi="175"
+   inkscape:export-ydpi="175">
+  <defs
+     id="defs3961">
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mend"
+       style="overflow:visible;">
+      <path
+         id="path4791"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) rotate(180) translate(0,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend-2"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4791-9"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend-3"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4791-7"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend-39"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4791-73"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     inkscape:document-units="mm"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.81710054"
+     inkscape:cx="526.18109"
+     inkscape:cy="372.04724"
+     inkscape:current-layer="layer1"
+     id="namedview3963"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="744"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3965">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g54"
+       style="fill:#f4f6f8;fill-opacity:1;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="translate(231.23817,41.725281)"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <path
+         id="path56"
+         inkscape:connector-curvature="0"
+         d="m 6.5,29.5 v 10 a 17.5,5 0 0 0 17.5,5 17.5,5 0 0 0 17.5,-5 v -10"
+         style="fill:#f4f6f8;fill-opacity:1;stroke-width:1.0629921;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         id="path58"
+         inkscape:connector-curvature="0"
+         d="m 6.5,19.5 v 10 a 17.5,5 0 0 0 17.5,5 17.5,5 0 0 0 17.5,-5 v -10"
+         style="fill:#f4f6f8;fill-opacity:1;stroke-width:1.0629921;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         id="path60"
+         inkscape:connector-curvature="0"
+         d="m 6.5,9.5 v 10 a 17.5,5 0 0 0 17.5,5 17.5,5 0 0 0 17.5,-5 v -10"
+         style="fill:#f4f6f8;fill-opacity:1;stroke-width:1.0629921;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         id="path62"
+         inkscape:connector-curvature="0"
+         d="M 24,4.5 A 17.5,5 0 0 0 6.5,9.5 17.5,5 0 0 0 24,14.5 17.5,5 0 0 0 41.5,9.5 17.5,5 0 0 0 24,4.5 z"
+         style="fill:#f4f6f8;fill-opacity:1;stroke-width:1.0629921;stroke-miterlimit:4;stroke-dasharray:none" />
+    </g>
+    <g
+       id="g78"
+       style="fill:#f4f6f8;stroke:#0f2d59;stroke-width:1.79001355;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="matrix(0.59384584,0,0,0.59384584,144.19255,95.654961)"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <path
+         id="path80"
+         inkscape:connector-curvature="0"
+         d="M 12.3,1.5 11.7,4.6 9,5.7 6.4,3.9 3.9,6.4 5.7,9 4.6,11.7 1.5,12.3 v 3.5 l 3.1,0.5 1.1,2.7 -1.8,2.6 2.5,2.5 2.6,-1.8 2.7,1.1 0.6,3.1 h 3.5 l 0.5,-3.1 2.7,-1.1 2.6,1.8 2.5,-2.5 -1.8,-2.6 1.1,-2.7 3.1,-0.5 V 12.3 L 23.4,11.7 22.3,9 24.1,6.4 21.6,3.9 19,5.7 16.3,4.6 15.8,1.5 h -3.5 z m 1.7,8 c 2.5,0 4.5,2 4.5,4.5 0,2.5 -2,4.5 -4.5,4.5 -2.5,0 -4.5,-2 -4.5,-4.5 0,-2.5 2,-4.5 4.5,-4.5 z"
+         style="stroke-width:1.79001355;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         id="path82"
+         inkscape:connector-curvature="0"
+         d="m 25,10.5 -0.8,4.4 -3.9,1.6 -3.8,-2.5 -3.5,3.5 2.5,3.8 -1.6,3.9 -4.4,0.8 v 5 l 4.4,0.8 1.6,3.9 -2.5,3.8 3.5,3.5 3.8,-2.5 3.9,1.6 0.8,4.4 h 5 l 0.8,-4.4 3.9,-1.6 3.8,2.5 3.5,-3.5 -2.5,-3.8 1.6,-3.9 4.4,-0.8 V 26 L 41.1,25.2 39.5,21.3 42,17.5 38.5,14 34.7,16.5 30.8,14.9 30,10.5 h -5 z m 2.5,12 c 3.3,0 6,2.7 6,6 0,3.3 -2.7,6 -6,6 -3.3,0 -6,-2.7 -6,-6 0,-3.3 2.7,-6 6,-6 z"
+         style="stroke-width:1.79001355;stroke-miterlimit:4;stroke-dasharray:none" />
+    </g>
+    <path
+       style="opacity:0.97000002;fill:#f3f6f8;fill-opacity:1;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 65.029644,153.38739 c -0.5236,-0.001 -1,0.4764 -1,1 l 0,35 c 0,0.5236 0.4764,1 1,1 l 29,0 c 0.5236,0 1.16854,-0.47641 1.17115,-1 l 0,-35.03924 c 0,-0.41875 -0.48044,-0.87606 -0.89918,-0.87725 z"
+       inkscape:connector-curvature="0"
+       id="path72-3-9"
+       sodipodi:nodetypes="sssssssss"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <g
+       id="g4687"
+       transform="translate(-119.77325,-276.58779)"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <path
+         sodipodi:nodetypes="sssssssss"
+         id="path72-3"
+         inkscape:connector-curvature="0"
+         d="m 182.01361,322.95286 c -0.5236,-10e-4 -1,0.4764 -1,1 l 0,35 c 0,0.5236 0.4764,1 1,1 l 29,0 c 0.5236,0 1.16854,-0.47641 1.17115,-1 l 0,-35.03924 c 0,-0.41875 -0.48044,-0.87606 -0.89918,-0.87725 z"
+         style="fill:#f3f6f8;fill-opacity:1;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="sssssssss"
+         id="path72-3-2"
+         inkscape:connector-curvature="0"
+         d="m 184.01361,324.95286 c -0.5236,-10e-4 -1,0.4764 -1,1 l 0,35 c 0,0.5236 0.4764,1 1,1 l 29,0 c 0.5236,0 1.16854,-0.47641 1.17115,-1 l 0,-35.03924 c 0,-0.41875 -0.48044,-0.87606 -0.89918,-0.87725 z"
+         style="fill:#f3f6f8;fill-opacity:1;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="sssssssss"
+         id="path72-3-2-5"
+         inkscape:connector-curvature="0"
+         d="m 186.01361,326.95286 c -0.5236,-10e-4 -1,0.4764 -1,1 l 0,35 c 0,0.5236 0.4764,1 1,1 l 29,0 c 0.5236,0 1.16854,-0.47641 1.17115,-1 l 0,-35.03924 c 0,-0.41875 -0.48044,-0.87606 -0.89918,-0.87725 z"
+         style="fill:#f3f6f8;fill-opacity:1;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="sssssssss"
+         id="path72-3-2-5-5"
+         inkscape:connector-curvature="0"
+         d="m 188.01361,328.95286 c -0.5236,-10e-4 -1,0.4764 -1,1 l 0,35 c 0,0.5236 0.4764,1 1,1 l 29,0 c 0.5236,0 1.16854,-0.47641 1.17115,-1 l 0,-35.03924 c 0,-0.41875 -0.48044,-0.87606 -0.89918,-0.87725 z"
+         style="fill:#f3f6f8;fill-opacity:1;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Exo;-inkscape-font-specification:Exo"
+       x="62.425076"
+       y="97.553963"
+       id="text4681"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><tspan
+         sodipodi:role="line"
+         id="tspan4683"
+         x="62.425076"
+         y="97.553963">Hibernate</tspan><tspan
+         sodipodi:role="line"
+         x="62.425076"
+         y="107.55396"
+         id="tspan4685">mappings</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Exo;-inkscape-font-specification:Exo"
+       x="238.19696"
+       y="95.515388"
+       id="text4681-9"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><tspan
+         sodipodi:role="line"
+         x="238.19696"
+         y="95.515388"
+         id="tspan4685-1">DataBase</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Exo;-inkscape-font-specification:Exo"
+       x="130.15012"
+       y="130.05602"
+       id="text4681-9-1"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><tspan
+         sodipodi:role="line"
+         x="130.15012"
+         y="130.05602"
+         id="tspan4685-1-6">$&gt; liquibase:diff</tspan></text>
+    <path
+       style="fill:none;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 98.613534,70.307731 c 0,0 17.421496,-2.45185 38.107136,9.49101 15.09423,8.71466 17.55838,17.8476 17.55838,17.8476"
+       id="path4740"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <path
+       style="fill:none;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 237.5627,69.937051 c 0,0 -41.00595,-2.45185 -61.69159,9.49101 -15.09423,8.71466 -19.45658,18.21828 -19.45658,18.21828"
+       id="path4740-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.97000002;fill:#000000;fill-opacity:1;stroke:none;font-family:Exo;-inkscape-font-specification:Exo"
+       x="65.377342"
+       y="198.76405"
+       id="text4681-9-7"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><tspan
+         sodipodi:role="line"
+         x="65.377342"
+         y="198.76405"
+         id="tspan4685-1-1">Autolog</tspan></text>
+    <path
+       style="fill:none;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 158.07545,132.94843 c -0.35807,16.40601 -16.46938,22.08702 -61.859366,38.40981"
+       id="path5407"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <g
+       id="g70-0-7"
+       style="fill:#f4f6f8;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="translate(182.68924,147.86159)"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <path
+         id="path72-4-0"
+         inkscape:connector-curvature="0"
+         d="m 31.5,5.5 h -22 a 1,1 0 0 0 -1,1 v 35 a 1,1 0 0 0 1,1 h 29 a 1,1 0 0 0 1,-1 v -28"
+         style="stroke-width:1.0629921;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         id="path74-0-8"
+         inkscape:connector-curvature="0"
+         d="m 13,26.5 h 22 m -22,9 h 17 m -17,-3 h 22 m -22,-3 h 22 m -22,-6 h 22 m -22,-3 h 22 m -22,-3 h 22"
+         style="stroke-width:1.0629921;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         id="path76-9-5"
+         inkscape:connector-curvature="0"
+         d="m 31.5,5.5 v 7 a 1,1 0 0 0 1,1 h 7 z"
+         style="stroke-width:1.0629921;stroke-miterlimit:4;stroke-dasharray:none" />
+    </g>
+    <path
+       style="fill:none;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 94.923524,171.85228 c 33.693206,0 72.582006,0 95.621966,0"
+       id="path5407-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <rect
+       style="opacity:0.85;fill:#0f2d59;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:0.68627451;stroke-dasharray:none"
+       id="rect7669"
+       width="11.708341"
+       height="12.063139"
+       x="162.01825"
+       y="90.460762"
+       ry="4.7545757"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot7671"
+       style="font-size:10px;font-style:normal;font-weight:bold;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       transform="translate(128.97837,-52.486399)"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><flowRegion
+         id="flowRegion7673"><rect
+           id="rect7675"
+           width="14.191928"
+           height="13.837126"
+           x="31.57704"
+           y="142.64656"
+           style="font-size:10px;font-weight:bold;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;-inkscape-font-specification:Sans Bold" /></flowRegion><flowPara
+         id="flowPara7677">1</flowPara></flowRoot>    <rect
+       style="opacity:0.85;fill:#0f2d59;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:0.68627451;stroke-dasharray:none"
+       id="rect7669-3"
+       width="11.708341"
+       height="12.063139"
+       x="108.26278"
+       y="173.19127"
+       ry="4.7545757"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot7671-0"
+       style="font-size:10px;font-style:normal;font-weight:bold;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       transform="translate(75.222904,30.310031)"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><flowRegion
+         id="flowRegion7673-0"><rect
+           id="rect7675-7"
+           width="14.191928"
+           height="13.837126"
+           x="31.57704"
+           y="142.64656"
+           style="font-size:10px;font-weight:bold;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;-inkscape-font-specification:Sans Bold" /></flowRegion><flowPara
+         id="flowPara7677-01">2</flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.97000002;fill:#000000;fill-opacity:1;stroke:none;font-family:Exo;-inkscape-font-specification:Exo"
+       x="187.02075"
+       y="199.06477"
+       id="text4681-9-7-0"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><tspan
+         sodipodi:role="line"
+         x="187.02075"
+         y="199.06477"
+         id="tspan4685-1-1-1">ChangeLog</tspan></text>
+    <path
+       style="fill:none;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 222.11688,171.75316 c 32.23672,-0.51301 33.27787,-3.98274 33.27787,-24.08344"
+       id="path5407-9-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <g
+       id="g78-4"
+       style="fill:#f4f6f8;stroke:#0f2d59;stroke-width:1.79001355;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       transform="matrix(0.59384584,0,0,0.59384584,240.69115,109.74857)"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300">
+      <path
+         id="path80-6"
+         inkscape:connector-curvature="0"
+         d="M 12.3,1.5 11.7,4.6 9,5.7 6.4,3.9 3.9,6.4 5.7,9 4.6,11.7 1.5,12.3 v 3.5 l 3.1,0.5 1.1,2.7 -1.8,2.6 2.5,2.5 2.6,-1.8 2.7,1.1 0.6,3.1 h 3.5 l 0.5,-3.1 2.7,-1.1 2.6,1.8 2.5,-2.5 -1.8,-2.6 1.1,-2.7 3.1,-0.5 V 12.3 L 23.4,11.7 22.3,9 24.1,6.4 21.6,3.9 19,5.7 16.3,4.6 15.8,1.5 h -3.5 z m 1.7,8 c 2.5,0 4.5,2 4.5,4.5 0,2.5 -2,4.5 -4.5,4.5 -2.5,0 -4.5,-2 -4.5,-4.5 0,-2.5 2,-4.5 4.5,-4.5 z"
+         style="stroke-width:1.79001355;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         id="path82-0"
+         inkscape:connector-curvature="0"
+         d="m 25,10.5 -0.8,4.4 -3.9,1.6 -3.8,-2.5 -3.5,3.5 2.5,3.8 -1.6,3.9 -4.4,0.8 v 5 l 4.4,0.8 1.6,3.9 -2.5,3.8 3.5,3.5 3.8,-2.5 3.9,1.6 0.8,4.4 h 5 l 0.8,-4.4 3.9,-1.6 3.8,2.5 3.5,-3.5 -2.5,-3.8 1.6,-3.9 4.4,-0.8 V 26 L 41.1,25.2 39.5,21.3 42,17.5 38.5,14 34.7,16.5 30.8,14.9 30,10.5 h -5 z m 2.5,12 c 3.3,0 6,2.7 6,6 0,3.3 -2.7,6 -6,6 -3.3,0 -6,-2.7 -6,-6 0,-3.3 2.7,-6 6,-6 z"
+         style="stroke-width:1.79001355;stroke-miterlimit:4;stroke-dasharray:none" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Exo;-inkscape-font-specification:Exo"
+       x="220.54904"
+       y="144.14961"
+       id="text4681-9-1-5"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><tspan
+         sodipodi:role="line"
+         x="220.54904"
+         y="144.14961"
+         id="tspan4685-1-6-2">$&gt; liquibase:update</tspan></text>
+    <rect
+       style="opacity:0.85;fill:#0f2d59;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:0.68627451;stroke-dasharray:none"
+       id="rect7669-34"
+       width="11.708341"
+       height="12.063139"
+       x="232.51685"
+       y="122.55436"
+       ry="4.7545757"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot7671-6"
+       style="font-size:10px;font-style:normal;font-weight:bold;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       transform="translate(199.47697,-20.392789)"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><flowRegion
+         id="flowRegion7673-25"><rect
+           id="rect7675-48"
+           width="14.191928"
+           height="13.837126"
+           x="31.57704"
+           y="142.64656"
+           style="font-size:10px;font-weight:bold;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;-inkscape-font-specification:Sans Bold" /></flowRegion><flowPara
+         id="flowPara7677-9">3</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#0f2d59;stroke-width:1.0629921;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 255.50468,112.6843 c 2.99294,-6.03036 2.6395,-2.26577 2.66934,-14.592429"
+       id="path5407-9-8-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.97000002;fill:#000000;fill-opacity:1;stroke:none;font-family:Exo;-inkscape-font-specification:Exo"
+       x="122.11004"
+       y="182.31883"
+       id="text4681-9-7-3"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/mall02/Repos/octopress/source/images/liquibase-diagram.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><tspan
+         sodipodi:role="line"
+         x="122.11004"
+         y="182.31883"
+         id="tspan4685-1-1-3">manual revision</tspan></text>
+  </g>
+</svg>

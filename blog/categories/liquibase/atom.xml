@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Liquibase | malaguna's boring blog]]></title>
+  <link href="http://malaguna.github.io/blog/categories/liquibase/atom.xml" rel="self"/>
+  <link href="http://malaguna.github.io/"/>
+  <updated>2015-06-09T23:36:54+02:00</updated>
+  <id>http://malaguna.github.io/</id>
+  <author>
+    <name><![CDATA[Miguel A. Laguna]]></name>
+    <email><![CDATA[malaguna@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Liquifying Your Project]]></title>
+    <link href="http://malaguna.github.io/blog/2015/06/09/liquifying-your-project/"/>
+    <updated>2015-06-09T23:29:51+02:00</updated>
+    <id>http://malaguna.github.io/blog/2015/06/09/liquifying-your-project</id>
+    <content type="html"><![CDATA[<p>Sometimes, when you use Hibernate in a project, you rely on <em>hbm2ddl</em> utility, it is fast and seems a very nice feature to manage database. However, when the project starts growing up it comes more difficult to maintain. I suffered it recently in a medium size project (150 KLoc) and thus I decided to search for a better option.</p>
+
+<p>After some research, I found <strong>Liquibase</strong> and now I am convinced it is the right way. In this post I am going to tell you how I use <strong>Liquibase</strong>.</p>
+
+<!-- more -->
+
+
+<p>Of course, I don&rsquo;t want to teach you all about Liquibase, <a href="http://www.liquibase.org/">www.liquibase.org</a> is plenty of documentation. Instead, I tell you what I think Liquibase is good for, and how it saved my day.</p>
+
+<p>Liquibase was designed to define and track DDL evolution independently of the RDBMS, so it is a database agnostic way to define and manage your database model. It has its own language to express <strong>ChangeSet</strong>. Liquibase groups <strong>ChangeSet</strong> into <strong>ChangeLog</strong> files. <strong>ChangeLog</strong> allows you to track database evolution. It is right to think about Liquibase as if it were a kind of CVS for databases.</p>
+
+<p>Liquibase is also capable to obtain differences between two different databases, between a <strong>ChangeLog</strong> and a database, even between Hibernate Mappings and database!. Liquibase expresses differences as a set of <strong>ChangeSet</strong> that you can add to the <strong>ChangeLog</strong>.</p>
+
+<h2>Sample project</h2>
+
+<p>I create a very simple project, called <strong>Casiopea</strong> to show you how I am using Liquibase. You can find this project as a github repo <a href="https://github.com/malaguna/casiopea">Casiopea Project</a>.</p>
+
+<p>This project has no functional code, it only has minimal Maven, Spring, Hibernate and Liquibase configuration. It also has three domain entities, as depicted below, with its Hibernate mappings (xml mappings, not annotations).</p>
+
+<p><img class="center" src="/images/liquibase-casiopea/model-casiopea.png"></p>
+
+<p>As you can see in the class diagram, there are three entities: <strong>Person</strong>, <strong>Project</strong> and <strong>Role</strong> related through a <strong>MemberShip</strong> relationship entity. This model let me know the role every person plays in the projects they work. As said, it is only an example to show how to use Liquibase.</p>
+
+<h2>What I want from Liquibase?</h2>
+
+<p>I don&rsquo;t want to waste my time, so I want to obtain SQL-DDL scripts from Hibernate mappings. Of course <em>hbm2ddl</em> is straight forward, but it doesn&rsquo;t serve to compare databases nor create SQL migration scripts for production systems.</p>
+
+<p>So I want Liquibase to create SQL-DDL scripts for several RDBMS, compare databases, update databases and create migration scripts. To be more precise, I want Liquibase in my project to work as following:</p>
+
+<p><img class="center" src="/images/liquibase-casiopea/liquibase-diagram.png"></p>
+
+<ol>
+<li><code>mvn compile liquibase:diff</code>: This Maven command compares Hibernate mappings against database and generates a <strong>ChangeSet</strong> that <em>moves</em> database to what Hibernate mappings expects.</li>
+<li>The automatically generated <strong>ChangeSet</strong> must be revised by a developer so it can be included into the Liquibase <strong>ChangeLog</strong> file.</li>
+<li>After <strong>ChangeLog</strong> modification, it is possible to update database through <code>mvn copmile liquibase:update</code>.</li>
+</ol>
+
+
+<p>It is worth to say that manual revision of the second step is very important. It is very useful to adjust some things as foreign key names, database dependent stuff, data types size, and so on. Of course, it is possible to obtain SQL script with <code>liquibase:updateSQL</code> command.</p>
+
+<h2>Project configuration</h2>
+
+<p>If you want to leverage your project with Liquibase, you have to do following configuration.</p>
+
+<h3>Spring</h3>
+
+<p>Casiopea Project has an Spring application context descriptor (<code>src/main/resources/app-context.xml</code>) with two beans:</p>
+
+<ul>
+<li><code>DataSource</code>: which points to database.</li>
+<li><code>SessionFactory</code>: which holds Hibernate mappings.</li>
+</ul>
+
+
+<pre><code class="xml">
+    &lt;bean id="dataSource" destroy-method="close"
+        class="org.apache.commons.dbcp.BasicDataSource"&gt;
+
+        ...
+
+        &lt;!-- Settings de conexion --&gt;
+        &lt;property name="url" value="${hibernate.url}" /&gt;
+        &lt;property name="username" value="${hibernate.username}" /&gt;
+        &lt;property name="password" value="${hibernate.password}" /&gt;
+    &lt;/bean&gt;
+
+    &lt;bean   id="sessionFactory"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"&gt;
+        &lt;property name="dataSource" ref="dataSource" /&gt;
+
+        &lt;property name="mappingLocations"&gt;
+            &lt;list&gt;
+                &lt;value&gt;classpath:/org/malaguna/casiopea/model/Person.hbm.xml&lt;/value&gt;
+                &lt;value&gt;classpath:/org/malaguna/casiopea/model/Project.hbm.xml&lt;/value&gt;
+                &lt;value&gt;classpath:/org/malaguna/casiopea/model/MemberShip.hbm.xml&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+
+        ...
+</code></pre>
+
+<p>As you can see, lines 8-10 configure database url, username and password using Maven properties. Lines 18-20, point to mappings classpath location. It is important to define <code>mappingLocations</code> property of <code>LocalSessionFactoryBean</code> instead <code>mappingResources</code> property. The second it is not recognized by liquibase-hiberante plugin.</p>
+
+<h3>Liquibase</h3>
+
+<p>Liquibase is configured by means of <code>liquibase.properties</code> file in resources folder. Here you can find relevant lines:</p>
+
+<pre><code class="properties">changeLogFile: src/main/resources/liquibase/changelog.xml
+diffChangeLogFile: src/main/resources/liquibase/autolog-${project.version}-${user.name}-${timestamp}.xml
+driver: ${hibernate.driver}
+url: ${hibernate.url}
+username: ${hibernate.username}
+password: ${hibernate.password}
+referenceUrl: hibernate:spring:app-context.xml?bean=sessionFactory
+</code></pre>
+
+<p>Lines 3-6, define database connection as in Spring application context, that is, using Maven properties.</p>
+
+<p>Line 2, defines <code>diffChangeLogFile</code> property. This is used when Liquibase calculates differences between mappings and database. Liquibase will write diff in a unique file named from project version, developer name and timestamp maven compilation.</p>
+
+<h3>Maven POM</h3>
+
+<p>Here it is the main configuration. There are three main points:</p>
+
+<ol>
+<li>Maven profiles, to define database connection properties</li>
+<li>Liquibase plugin, to configure Liquibase execution and dependencies.</li>
+<li>Resource filtering, to replace maven variables in Spring, Liquibase and other configuration properties.</li>
+</ol>
+
+
+<h4>Maven profiles</h4>
+
+<p>Following is a fragment of the Maven POM file, where a profile called <code>db-local</code> is defined:</p>
+
+<pre><code class="xml">    &lt;!-- Debug config profiles --&gt;
+    &lt;profile&gt;
+        &lt;id&gt;db-local&lt;/id&gt;
+        &lt;activation&gt;
+            &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+        &lt;/activation&gt;
+        &lt;properties&gt;
+            &lt;!-- Local HSQLDB server database --&gt;
+            &lt;hibernate.dialect&gt;org.hibernate.dialect.HSQLDialect&lt;/hibernate.dialect&gt;
+            &lt;hibernate.driver&gt;org.hsqldb.jdbcDriver&lt;/hibernate.driver&gt;
+            &lt;hibernate.url&gt;jdbc:hsqldb:hsql://localhost/casiopea&lt;/hibernate.url&gt;
+            &lt;hibernate.username&gt;sa&lt;/hibernate.username&gt;
+            &lt;hibernate.password&gt;&lt;/hibernate.password&gt;
+        &lt;/properties&gt;
+    &lt;/profile&gt;
+</code></pre>
+
+<p>In this profile, Maven points to a local HsqlDB instance called <code>casiopea</code>. You can easily change these values, or you can define new maven profiles to add more database connections.</p>
+
+<p>If you want to start a local HsqlDB instance called <code>casiopea</code> you can download HsqlDB jar and run the following command:</p>
+
+<pre><code class="bash">$&gt; java -cp /path/to/hsqldb-2.3.2.jar org.hsqldb.Server -database.0 file:/path/to/casiopea -dbname.0 casiopea
+</code></pre>
+
+<h4>Liquibase plugin</h4>
+
+<p>Following is a fragment of the Maven POM file, where Liquibase plugin is configured:</p>
+
+<pre><code class="xml">    &lt;plugin&gt;
+        &lt;!-- liquibase management --&gt;
+        &lt;groupId&gt;org.liquibase&lt;/groupId&gt;
+        &lt;artifactId&gt;liquibase-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;${liquibase.version}&lt;/version&gt;
+        &lt;configuration&gt;
+                    &lt;propertyFile&gt;target/classes/liquibase.properties&lt;/propertyFile&gt;
+        &lt;/configuration&gt;
+        &lt;dependencies&gt;
+            ...
+        &lt;/dependencies&gt;
+    &lt;/plugin&gt;
+</code></pre>
+
+<p>Line 7, shows that <code>liquibase.properties</code> is not read from resources path but from target. This is because of the Maven filtering process.</p>
+
+<h4>Resource filtering</h4>
+
+<p>Resource filtering is configured in maven as usual, including the files that contain Maven properties. You can check it at the end of the Maven pom, inside build section.</p>
+
+<h2>Running the project</h2>
+
+<p>Before running this project it is very important to say that it won&rsquo;t work. There is a bug with the Liquibase Hibernate plugin that ignores Spring SessionFactory bean, when using <code>org.springframework.orm.hibernate4.LocalSessionFactory</code>.</p>
+
+<p>I documented this bug as <a href="https://github.com/liquibase/liquibase-hibernate/issues/61">#61</a>. Until this bug won&rsquo;t be resolved, Casiopea project does not work properly. Instead you could use a forked version of Liquibase Hibernate plugin where I solved this bug.</p>
+
+<p>So, if you still want to use Casiopea project, you can clone my <a href="https://github.com/malaguna/liquibase-hibernate">liquibase-hibernate fork</a> and install it localy using <code>mvn install</code>. This command will deploy in your local maven repository the 3.6-SNAPSHOT version that you need.</p>
+
+<p>Once installed this dependecy, you can start a local instance of HsqlDB as explained above, and run <code>liquibase:diff</code>. You will find a message similar to this:</p>
+
+<pre><code>mall02@tk-x220-t:~/Repos/casiopea$ mvn compile liquibase:diff
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Casiopea 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+
+...
+
+INFO 9/06/15 23:12: liquibase-hibernate: Reading hibernate configuration hibernate:spring:app-context.xml?bean=sessionFactory
+
+...
+
+INFO 9/06/15 23:12: liquibase-hibernate: Found mappingLocation classpath:/org/malaguna/casiopea/model/Person.hbm.xml
+INFO 9/06/15 23:12: liquibase-hibernate: Adding resource  file:/home/mall02/Repos/casiopea/target/classes/org/malaguna/casiopea/model/Person.hbm.xml
+INFO 9/06/15 23:12: liquibase-hibernate: Found mappingLocation classpath:/org/malaguna/casiopea/model/Project.hbm.xml
+INFO 9/06/15 23:12: liquibase-hibernate: Adding resource  file:/home/mall02/Repos/casiopea/target/classes/org/malaguna/casiopea/model/Project.hbm.xml
+INFO 9/06/15 23:12: liquibase-hibernate: Found mappingLocation classpath:/org/malaguna/casiopea/model/MemberShip.hbm.xml
+INFO 9/06/15 23:12: liquibase-hibernate: Adding resource  file:/home/mall02/Repos/casiopea/target/classes/org/malaguna/casiopea/model/MemberShip.hbm.xml
+
+...
+
+[INFO] Differences written to Change Log File, src/main/resources/liquibase/autolog-0.0.1-SNAPSHOT-mall02-20150609231229.xml
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.494s
+[INFO] Finished at: Tue Jun 09 23:12:32 CEST 2015
+[INFO] Final Memory: 17M/212M
+[INFO] ------------------------------------------------------------------------
+</code></pre>
+
+<p>Line 11, tells you Liquibase Hibernate plugin has found Spring application context and <code>sessionFactory</code> bean.</p>
+
+<p>Lines 15-20, list all mapped entities that are defined in <code>sessionFactory</code>. Finally, line 24, shows where Liquibase has written automated <strong>ChangeSet</strong>. You can edit this file and found how good is Liquibase ;)</p>
+
+<p>Now you can review the autolog and copy all ChangeSets to ChangeLog file. After that, you can run <code>liquibase:update</code> or <code>liquibase:updateSQL</code> and smile for a while.</p>
+
+<p>I hope you enjoy reading this post, and obviously I would like you find it helpful.</p>
+
+<p>Thank you for reading!</p>
+]]></content>
+  </entry>
+  
+</feed>
