@@ -4,7 +4,7 @@
   <title><![CDATA[malaguna's boring blog]]></title>
   <link href="http://malaguna.github.io/atom.xml" rel="self"/>
   <link href="http://malaguna.github.io/"/>
-  <updated>2015-06-09T23:36:54+02:00</updated>
+  <updated>2015-11-12T17:20:46+01:00</updated>
   <id>http://malaguna.github.io/</id>
   <author>
     <name><![CDATA[Miguel A. Laguna]]></name>
@@ -12,6 +12,214 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using beforeShowDay From BackBean Values]]></title>
+    <link href="http://malaguna.github.io/blog/2015/11/12/beforeshowday/"/>
+    <updated>2015-11-12T17:10:07+01:00</updated>
+    <id>http://malaguna.github.io/blog/2015/11/12/beforeshowday</id>
+    <content type="html"><![CDATA[<p>I have found some info and examples about using <code>beforeShowDay</code> attribute to enable/disable days in <code>p:calendar</code> component from PrimeFaces, it is easy and strightforward. But, these examples did not retrieve data from back bean, instead it calculate some conditions on JavaScript.</p>
+
+<p>After some reviews on StackOverflow I found a <a href="https://zenidas.wordpress.com/recipes/primefaces-calendar-customization/">great entry</a> in Zenida&rsquo;s blog, about how to do it.</p>
+
+<p>However, this approach did not work on Chrome browser, neither Internet Explorer. So I started debugging and fixed some bugs. Now here you are with a complete solution valid for every browser.</p>
+
+<!-- more -->
+
+
+<p>I have created a github repository <a href="https://github.com/malaguna/samples">https://github.com/malaguna/samples</a> to build empty projects to test or show some behaviour. Inside this repository I have crieated a <em>beforeShowDay</em> maven project. You can check it out, it is fully working.</p>
+
+<h2>Special considerations</h2>
+
+<p>Here you will find what are the relevant parts that differs with normal usage of prime faces components, and those that bugged me while doing this job.</p>
+
+<h3>Including JavaScript into xhtml</h3>
+
+<p>It is not possible to include a JavaScript function inside an xhtml page anyhow. To avoid problems, the best way is to use <code>&lt;h:outputScript&gt;</code> and <code>CDATA</code> as follows:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;h:outputScript&gt;</span>
+</span><span class='line'> //<span class="cp">&lt;![CDATA[</span>
+</span><span class='line'><span class="cp"> function processDay(date) {</span>
+</span><span class='line'><span class="cp">     //Your code goes here ...</span>
+</span><span class='line'><span class="cp"> };</span>
+</span><span class='line'><span class="cp"> //]]&gt;</span>
+</span><span class='line'><span class="nt">&lt;/h:outputScript&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It is very important to use double backslash before <code>CDATA</code> starts and also at the end.</p>
+
+<h3>Calling back bean from JavaScript</h3>
+
+<p>If you want to call a back bean method from JavaScript function, you have to use JSTL functions. In order to use JSTL functions inside an xhtml page, you have to include the namespace <code>xmlns:fn="http://java.sun.com/jsp/jstl/functions"</code>.</p>
+
+<p>Now you can use it to invoke a back bean method. For example, the following line will call <code>calendarBean.getSpecialDays();</code> that returns a Java array of strings. This array is <strong>joined</strong> into a JavaScript string with comma separated elements, that are converted into a JavaScript array of strings. I know it seems a bit confusing.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">specialDays</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="err">#</span><span class="p">{</span><span class="nx">fn</span><span class="o">:</span><span class="nx">join</span><span class="p">(</span><span class="nx">calendarBean</span><span class="p">.</span><span class="nx">getSpecialDays</span><span class="p">(),</span> <span class="s1">&#39;,&#39;</span><span class="p">)});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Date format</h3>
+
+<p>Due to I want to compare dates inside JavaScript, it is necessary to send dates from back bean to JavaScript well formated. Following formatter is used into Java code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="n">SimpleDateFormat</span> <span class="n">sdf</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SimpleDateFormat</span><span class="o">(</span><span class="s">&quot;yyyy-MM-dd&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally, inside JavaScript code you must compare dates ignoring time and timezone information, so previosly it is necessary to transform dates as following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">compare1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">(),</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">(),</span><span class="nx">date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">());</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So now you can compare dates by means of <code>getTime()</code> function.</p>
+
+<h2>Resulting code</h2>
+
+<p>So, here you have relevant xhtml code:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:h=</span><span class="s">&quot;http://java.sun.com/jsf/html&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:f=</span><span class="s">&quot;http://java.sun.com/jsf/core&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:p=</span><span class="s">&quot;http://primefaces.org/ui&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:fn=</span><span class="s">&quot;http://java.sun.com/jsp/jstl/functions&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  ...
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;h:outputScript&gt;</span>
+</span><span class='line'>   //<span class="cp">&lt;![CDATA[</span>
+</span><span class='line'><span class="cp">     function processDay(date) {</span>
+</span><span class='line'><span class="cp">         var specialDays = new Array(#{fn:join(calendarBean.getSpecialDays(), &#39;,&#39;)});</span>
+</span><span class='line'><span class="cp">         </span>
+</span><span class='line'><span class="cp">         for (var i = 0; i &lt; specialDays.length; i++) {</span>
+</span><span class='line'><span class="cp">             var sDate = new Date(specialDays[i]);</span>
+</span><span class='line'><span class="cp">             </span>
+</span><span class='line'><span class="cp">             var compare1 = new Date(date.getFullYear(),date.getMonth(),date.getDate());</span>
+</span><span class='line'><span class="cp">             var compare2 = new Date(sDate.getFullYear(),sDate.getMonth(),sDate.getDate());</span>
+</span><span class='line'><span class="cp">             </span>
+</span><span class='line'><span class="cp">             if(compare1.getTime() == compare2.getTime()) {</span>
+</span><span class='line'><span class="cp">                 return [false, &#39;&#39;];</span>
+</span><span class='line'><span class="cp">             }</span>
+</span><span class='line'><span class="cp">         }</span>
+</span><span class='line'><span class="cp">         </span>
+</span><span class='line'><span class="cp">         return [true, &#39;&#39;];</span>
+</span><span class='line'><span class="cp">     };</span>
+</span><span class='line'><span class="cp">  //]]&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/h:outputScript&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  ...
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;h:form</span> <span class="na">id=</span><span class="s">&quot;form&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h:panelGrid</span> <span class="na">columns=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;h:outputLabel</span> <span class="na">value=</span><span class="s">&quot;Calendario :&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;p:calendar</span> <span class="na">id=</span><span class="s">&quot;calendar&quot;</span> <span class="na">mode=</span><span class="s">&quot;inline&quot;</span>
+</span><span class='line'>              <span class="na">value=</span><span class="s">&quot;#{calendarBean.currentDay}&quot;</span> <span class="na">beforeShowDay=</span><span class="s">&quot;processDay&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/h:panelGrid&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/h:form&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  ...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and back bean method</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">getSpecialDays</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">String</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">Calendar</span> <span class="n">cal</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// yesterday</span>
+</span><span class='line'>  <span class="n">cal</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">DATE</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">result</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;&#39;%s&#39;&quot;</span><span class="o">,</span> <span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">cal</span><span class="o">.</span><span class="na">getTime</span><span class="o">()));</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// Today</span>
+</span><span class='line'>  <span class="n">cal</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">DATE</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">result</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;&#39;%s&#39;&quot;</span><span class="o">,</span> <span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">cal</span><span class="o">.</span><span class="na">getTime</span><span class="o">()));</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// Tomorrow</span>
+</span><span class='line'>  <span class="n">cal</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">DATE</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">result</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;&#39;%s&#39;&quot;</span><span class="o">,</span> <span class="n">sdf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">cal</span><span class="o">.</span><span class="na">getTime</span><span class="o">()));</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This method only returns three <em>special</em> days, yesterday, today and tomorrow, as you can see, it is quite easy to calculate other days and return it.</p>
+
+<p>Hope you find it useful.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Liquifying Your Project]]></title>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | malaguna's boring blog]]></title>
   <link href="http://malaguna.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://malaguna.github.io/"/>
-  <updated>2015-06-09T23:36:54+02:00</updated>
+  <updated>2015-11-12T17:20:46+01:00</updated>
   <id>http://malaguna.github.io/</id>
   <author>
     <name><![CDATA[Miguel A. Laguna]]></name>
@@ -12,6 +12,139 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using beforeShowDay From BackBean Values]]></title>
+    <link href="http://malaguna.github.io/blog/2015/11/12/beforeshowday/"/>
+    <updated>2015-11-12T17:10:07+01:00</updated>
+    <id>http://malaguna.github.io/blog/2015/11/12/beforeshowday</id>
+    <content type="html"><![CDATA[<p>I have found some info and examples about using <code>beforeShowDay</code> attribute to enable/disable days in <code>p:calendar</code> component from PrimeFaces, it is easy and strightforward. But, these examples did not retrieve data from back bean, instead it calculate some conditions on JavaScript.</p>
+
+<p>After some reviews on StackOverflow I found a <a href="https://zenidas.wordpress.com/recipes/primefaces-calendar-customization/">great entry</a> in Zenida&rsquo;s blog, about how to do it.</p>
+
+<p>However, this approach did not work on Chrome browser, neither Internet Explorer. So I started debugging and fixed some bugs. Now here you are with a complete solution valid for every browser.</p>
+
+<!-- more -->
+
+
+<p>I have created a github repository <a href="https://github.com/malaguna/samples">https://github.com/malaguna/samples</a> to build empty projects to test or show some behaviour. Inside this repository I have crieated a <em>beforeShowDay</em> maven project. You can check it out, it is fully working.</p>
+
+<h2>Special considerations</h2>
+
+<p>Here you will find what are the relevant parts that differs with normal usage of prime faces components, and those that bugged me while doing this job.</p>
+
+<h3>Including JavaScript into xhtml</h3>
+
+<p>It is not possible to include a JavaScript function inside an xhtml page anyhow. To avoid problems, the best way is to use <code>&lt;h:outputScript&gt;</code> and <code>CDATA</code> as follows:</p>
+
+<pre><code class="xml">    &lt;h:outputScript&gt;
+     //&lt;![CDATA[
+        function processDay(date) {
+            //Your code goes here ...
+        };
+     //]]&gt;
+    &lt;/h:outputScript&gt;
+</code></pre>
+
+<p>It is very important to use double backslash before <code>CDATA</code> starts and also at the end.</p>
+
+<h3>Calling back bean from JavaScript</h3>
+
+<p>If you want to call a back bean method from JavaScript function, you have to use JSTL functions. In order to use JSTL functions inside an xhtml page, you have to include the namespace <code>xmlns:fn="http://java.sun.com/jsp/jstl/functions"</code>.</p>
+
+<p>Now you can use it to invoke a back bean method. For example, the following line will call <code>calendarBean.getSpecialDays();</code> that returns a Java array of strings. This array is <strong>joined</strong> into a JavaScript string with comma separated elements, that are converted into a JavaScript array of strings. I know it seems a bit confusing.</p>
+
+<pre><code class="javascript">    var specialDays = new Array(#{fn:join(calendarBean.getSpecialDays(), ',')}); 
+</code></pre>
+
+<h3>Date format</h3>
+
+<p>Due to I want to compare dates inside JavaScript, it is necessary to send dates from back bean to JavaScript well formated. Following formatter is used into Java code:</p>
+
+<pre><code class="java">    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+</code></pre>
+
+<p>Finally, inside JavaScript code you must compare dates ignoring time and timezone information, so previosly it is necessary to transform dates as following:</p>
+
+<pre><code class="javascript">    var compare1 = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+</code></pre>
+
+<p>So now you can compare dates by means of <code>getTime()</code> function.</p>
+
+<h2>Resulting code</h2>
+
+<p>So, here you have relevant xhtml code:</p>
+
+<pre><code class="xml">&lt;html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"&gt;
+
+    ...
+
+    &lt;h:outputScript&gt;
+     //&lt;![CDATA[
+        function processDay(date) {
+            var specialDays = new Array(#{fn:join(calendarBean.getSpecialDays(), ',')});
+
+            for (var i = 0; i &lt; specialDays.length; i++) {
+                var sDate = new Date(specialDays[i]);
+
+                var compare1 = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+                var compare2 = new Date(sDate.getFullYear(),sDate.getMonth(),sDate.getDate());
+
+                if(compare1.getTime() == compare2.getTime()) {
+                    return [false, ''];
+                }
+            }
+
+            return [true, ''];
+        };
+     //]]&gt;
+    &lt;/h:outputScript&gt;
+
+    ...
+
+    &lt;h:form id="form"&gt;
+        &lt;h:panelGrid columns="2"&gt;
+            &lt;h:outputLabel value="Calendario :" /&gt;
+            &lt;p:calendar id="calendar" mode="inline"
+                value="#{calendarBean.currentDay}" beforeShowDay="processDay" /&gt;
+        &lt;/h:panelGrid&gt;
+    &lt;/h:form&gt;
+
+    ...
+</code></pre>
+
+<p>and back bean method</p>
+
+<pre><code class="java">    public String[] getSpecialDays() {
+        String[] result = new String[3];
+
+        Calendar cal = Calendar.getInstance();
+
+        // yesterday
+        cal.add(Calendar.DATE, -1);
+        result[0] = String.format("'%s'", sdf.format(cal.getTime()));
+
+        // Today
+        cal.add(Calendar.DATE, 1);
+        result[1] = String.format("'%s'", sdf.format(cal.getTime()));
+
+        // Tomorrow
+        cal.add(Calendar.DATE, 1);
+        result[2] = String.format("'%s'", sdf.format(cal.getTime()));
+
+        return result;
+    }
+</code></pre>
+
+<p>This method only returns three <em>special</em> days, yesterday, today and tomorrow, as you can see, it is quite easy to calculate other days and return it.</p>
+
+<p>Hope you find it useful.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Liquifying Your Project]]></title>
